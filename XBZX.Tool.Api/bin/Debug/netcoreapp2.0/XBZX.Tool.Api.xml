@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>XBZX.Tool.Api</name>
+    </assembly>
+    <members>
+        <member name="T:XBZX.Tool.Api.Controllers.BrowseRecordsController">
+            <summary>
+            浏览记录的api
+            </summary>
+        </member>
+        <member name="M:XBZX.Tool.Api.Controllers.BrowseRecordsController.#ctor(XBZX.Tool.Api.MyContext)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="_context"></param>
+        </member>
+        <member name="M:XBZX.Tool.Api.Controllers.BrowseRecordsController.Get">
+            <summary>
+            简单查询
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:XBZX.Tool.Api.Controllers.BrowseRecordsController.Post(XBZX.Tool.Api.CreateBrowseRecordModel)">
+            <summary>
+            创建一条浏览记录
+            </summary>
+            <param name="model">创建一条浏览记录model</param>
+        </member>
+        <member name="T:XBZX.Tool.Api.BrowseRecordsEntity">
+            <summary>
+            浏览记录
+            </summary>
+        </member>
+        <member name="P:XBZX.Tool.Api.BrowseRecordsEntity.Id">
+            <summary>
+            主键Id
+            </summary>
+        </member>
+        <member name="P:XBZX.Tool.Api.BrowseRecordsEntity.Url">
+            <summary>
+            访问的Url
+            </summary>
+        </member>
+        <member name="P:XBZX.Tool.Api.BrowseRecordsEntity.IP">
+            <summary>
+            访问者IP
+            </summary>
+        </member>
+        <member name="P:XBZX.Tool.Api.BrowseRecordsEntity.DateTime">
+            <summary>
+            访问时间
+            </summary>
+        </member>
+        <member name="P:XBZX.Tool.Api.BrowseRecordsEntity.UrlComment">
+            <summary>
+            请求站点的描述
+            </summary>
+        </member>
+        <member name="T:XBZX.Tool.Api.MyContext">
+            <summary>
+            构造的 DbContext
+            </summary>
+        </member>
+        <member name="M:XBZX.Tool.Api.MyContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{XBZX.Tool.Api.MyContext})">
+            <summary>
+            构造函数
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="P:XBZX.Tool.Api.MyContext.BrowseRecords">
+            <summary>
+            浏览记录
+            </summary>
+        </member>
+        <member name="T:XBZX.Tool.Api.CreateBrowseRecordModel">
+            <summary>
+            创建浏览记录Model
+            </summary>
+        </member>
+        <member name="P:XBZX.Tool.Api.CreateBrowseRecordModel.Url">
+            <summary>
+            访问的Url
+            </summary>
+        </member>
+        <member name="P:XBZX.Tool.Api.CreateBrowseRecordModel.UrlComment">
+            <summary>
+            访问的Url站点的描述
+            </summary>
+        </member>
+    </members>
+</doc>
