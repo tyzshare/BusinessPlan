@@ -13445,11 +13445,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\JinPeng\\Tool\\XBZX.Tool.Api\\XBZX.Tool.Api\\XBZX.Tool.Api.csproj",
+      "projectUniqueName": "F:\\TYZ\\tool\\XBZX.Tool.Api\\XBZX.Tool.Api.csproj",
       "projectName": "XBZX.Tool.Api",
-      "projectPath": "E:\\JinPeng\\Tool\\XBZX.Tool.Api\\XBZX.Tool.Api\\XBZX.Tool.Api.csproj",
+      "projectPath": "F:\\TYZ\\tool\\XBZX.Tool.Api\\XBZX.Tool.Api.csproj",
       "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-      "outputPath": "E:\\JinPeng\\Tool\\XBZX.Tool.Api\\XBZX.Tool.Api\\obj\\",
+      "outputPath": "F:\\TYZ\\tool\\XBZX.Tool.Api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
