@@ -47,15 +47,10 @@ namespace XBZX.Tool.Api.Controllers
         [Route("CreateBrowseRecord")]
         public async Task CreateBrowseRecord([FromBody]CreateBrowseRecordModel model)
         {
-            string userHostAddress = HttpContext.Request.Host.Host;
-            if (string.IsNullOrEmpty(userHostAddress))
-            {
-                userHostAddress = "127.0.0.1";
-            }
             Context.BrowseRecords.Add(new BrowseRecordsEntity()
             {
                 Url = model.Url,
-                IP = userHostAddress,
+                IP = model.IP,
                 UrlComment = model.UrlComment
             });
             await Context.SaveChangesAsync();
