@@ -21,7 +21,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:XBZX.Tool.Api.Controllers.BrowseRecordsController.Post(XBZX.Tool.Api.CreateBrowseRecordModel)">
+        <member name="M:XBZX.Tool.Api.Controllers.BrowseRecordsController.CreateBrowseRecord(XBZX.Tool.Api.CreateBrowseRecordModel)">
             <summary>
             创建一条浏览记录
             </summary>
@@ -71,6 +71,26 @@
         <member name="P:XBZX.Tool.Api.MyContext.BrowseRecords">
             <summary>
             浏览记录
+            </summary>
+        </member>
+        <member name="T:XBZX.Tool.Api.BrowseRecordModel">
+            <summary>
+            浏览记录
+            </summary>
+        </member>
+        <member name="P:XBZX.Tool.Api.BrowseRecordModel.Date">
+            <summary>
+            天
+            </summary>
+        </member>
+        <member name="P:XBZX.Tool.Api.BrowseRecordModel.Count">
+            <summary>
+            访问次数
+            </summary>
+        </member>
+        <member name="P:XBZX.Tool.Api.BrowseRecordModel.SiteName">
+            <summary>
+            访问的Url站点
             </summary>
         </member>
         <member name="T:XBZX.Tool.Api.CreateBrowseRecordModel">

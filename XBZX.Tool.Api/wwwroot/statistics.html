@@ -1,0 +1,189 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>访问量</title>
+    <script src="echarts.min.js"></script>
+</head>
+
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 100%;height:500px;"></div>
+    <script type="text/javascript">
+        // Date.prototype.Format = function (fmt) {
+        //     var o = {
+        //         "M+": this.getMonth() + 1, //月份
+        //         "d+": this.getDate(), //日
+        //         "h+": this.getHours(), //小时
+        //         "m+": this.getMinutes(), //分
+        //         "s+": this.getSeconds(), //秒
+        //         "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+        //         "S": this.getMilliseconds() //毫秒
+        //     };
+        //     if (/(y+)/.test(fmt))
+        //         fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        //     for (var k in o)
+        //         if (new RegExp("(" + k + ")").test(fmt))
+        //             fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        //     return fmt;
+        // }
+        Date.prototype.addDays = function (d) {
+            this.setDate(this.getDate() + d);
+        };
+
+        function isSame(min, max) {
+            if (min.getYear() != max.getYear()) {
+                return false;
+            }
+            if (min.getMonth() != max.getMonth()) {
+                return false;
+            }
+            if (min.getDate() != max.getDate()) {
+                return false;
+            }
+            return true;
+        }
+
+        function setChart(data) {
+            if (!data.length) {
+                return alert('没有数据');
+            }
+            data.forEach(item => {
+                item.date = item.date.replace(/T.*/, '');
+            });
+
+            var minDate, maxDate;
+            if (data.length) {
+                minDate = new Date(data[0].date);
+                maxDate = new Date(data[data.length - 1].date);
+            }
+            var xList = [];
+
+            while (!isSame(minDate, maxDate)) {
+                xList.push(minDate.toJSON());
+                minDate.addDays(1);
+            }
+            xList.push(minDate.toJSON());
+
+            var list = [];
+
+            data.forEach(item => {
+                if (!list.find(lil => {
+                    if (lil[0].siteName == item.siteName) {
+                        lil.push(item);
+                        return true;
+                    }
+                })) {
+                    list.push([item]);
+                }
+            });
+
+            var nameList = [];
+            var series = list.map(lil => {
+                var name = lil[0].siteName;
+                nameList.push(name);
+                yList = xList.map((x, idx, arr) => {
+                    var t = 0;
+                    arr[idx] = x.replace(/T.*/, '');
+                    x = arr[idx];
+                    lil.find(item => {
+                        if (item.date == x) {
+                            t = item.count;
+                            return true;
+                        }
+                    });
+                    return t;
+                });
+                return {
+                    name: name,
+                    type: 'line',
+                    data: yList
+                }
+            })
+
+
+            // 基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById('main'));
+            // 指定图表的配置项和数据
+            var option = {
+                title: {
+                    text: '数据库文档访问量'
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: nameList
+                },
+                xAxis: {
+                    data: xList
+                },
+                yAxis: {},
+                series: series
+            };
+
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+        }
+
+        var xmlhttp;
+        function loadXMLDoc(url) {
+            xmlhttp = null;
+            if (window.XMLHttpRequest) {// code for all new browsers
+                xmlhttp = new XMLHttpRequest();
+            }
+            else if (window.ActiveXObject) {// code for IE5 and IE6
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            if (xmlhttp != null) {
+                xmlhttp.onreadystatechange = state_Change;
+                xmlhttp.open("GET", url, true);
+                xmlhttp.send(null);
+            }
+            else {
+                alert("Your browser does not support XMLHTTP.");
+            }
+        }
+
+        function state_Change() {
+            if (xmlhttp.readyState == 4) {// 4 = "loaded"
+                if (xmlhttp.status == 200) {// 200 = OK
+                    
+                    // ...our code here...
+                    var res = JSON.parse(xmlhttp.responseText);
+                    setChart(res);
+                }
+                else {
+                    alert("网络请求错误,用的是假数据");
+                    var res = [{
+                        "date": "2018-06-06T00:00:00",
+                        "count": 3,
+                        "siteName": "测试站点111"
+                    }, {
+                        "date": "2018-06-07T00:00:00",
+                        "count": 3,
+                        "siteName": "测试站点111"
+                    }, {
+                        "date": "2018-06-08T00:00:00",
+                        "count": 5,
+                        "siteName": "测试站点111"
+                    }, {
+                        "date": "2018-06-07T00:00:00",
+                        "count": 1,
+                        "siteName": "测试站点222"
+                    }, {
+                        "date": "2018-06-09T00:00:00",
+                        "count": 5,
+                        "siteName": "测试站点222"
+                    }]
+                    setChart(res);
+                }
+            }
+        }
+
+        loadXMLDoc('/api/BrowseRecords');
+    </script>
+</body>
+
+</html>

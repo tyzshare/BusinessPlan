@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace XBZX.Tool.Api.Controllers
@@ -10,6 +11,7 @@ namespace XBZX.Tool.Api.Controllers
     /// 浏览记录的api
     /// </summary>
     [Route("api/[controller]")]
+    [EnableCors("AllowSameDomain")]
     public class BrowseRecordsController : Controller
     {
         private MyContext Context;
@@ -29,9 +31,11 @@ namespace XBZX.Tool.Api.Controllers
         /// <returns></returns>
         // GET: api/<controller>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<BrowseRecordModel> Get()
         {
-            return new string[] { "value1", "value2" };
+            var result = Context.BrowseRecords.GroupBy(p => new { p.DateTime.Date, p.UrlComment })
+                .Select(o => new BrowseRecordModel { Date = o.Key.Date, Count = o.Count(), SiteName = o.Key.UrlComment }).ToList();
+            return result;
         }
 
         /// <summary>
@@ -40,7 +44,8 @@ namespace XBZX.Tool.Api.Controllers
         /// <param name="model">创建一条浏览记录model</param>
         // POST api/<controller>
         [HttpPost]
-        public void Post([FromBody]CreateBrowseRecordModel model)
+        [Route("CreateBrowseRecord")]
+        public async Task CreateBrowseRecord([FromBody]CreateBrowseRecordModel model)
         {
             string userHostAddress = HttpContext.Request.Host.Host;
             if (string.IsNullOrEmpty(userHostAddress))
@@ -50,9 +55,10 @@ namespace XBZX.Tool.Api.Controllers
             Context.BrowseRecords.Add(new BrowseRecordsEntity()
             {
                 Url = model.Url,
-                IP = userHostAddress
+                IP = userHostAddress,
+                UrlComment = model.UrlComment
             });
-            Context.SaveChanges();
+            await Context.SaveChangesAsync();
         }
     }
 }
