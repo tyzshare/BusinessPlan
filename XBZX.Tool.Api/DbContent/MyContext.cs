@@ -22,5 +22,13 @@ namespace XBZX.Tool.Api
         /// 浏览记录
         /// </summary>
         public DbSet<BrowseRecordsEntity> BrowseRecords { get; set; }
+        /// <summary>
+        /// 业务大图节点
+        /// </summary>
+        public DbSet<BusinessPlanNodeEntity> BusinessPlanNodes { get; set; }
+        /// <summary>
+        /// 业务大图关系
+        /// </summary>
+        public DbSet<BusinessPlanRelationShipEntity> BusinessPlanRelationShips { get; set; }
     }
 }
