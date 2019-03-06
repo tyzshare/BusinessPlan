@@ -30,7 +30,7 @@ namespace XBZX.Tool.Api
             services.AddMvc();
             //跨域
             services.AddCors(options => options.AddPolicy("AllowSameDomain", builder => builder.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod()));
-#if DEBUG
+//#if DEBUG
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new Info
@@ -45,7 +45,7 @@ namespace XBZX.Tool.Api
                 var xmlPath = Path.Combine(basePath, "XBZX.Tool.Api.xml");
                 options.IncludeXmlComments(xmlPath);
             });
-#endif
+//#endif
             //DbContext
             var connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<MyContext>(options => options.UseMySQL(connection));
@@ -62,13 +62,13 @@ namespace XBZX.Tool.Api
             app.UseMvc();
             //跨域
             app.UseCors("AllowSameDomain");
-#if DEBUG
+//#if DEBUG
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "XBZX.Tool.Api");
             });
-#endif
+//#endif
             app.UseStaticFiles();
         }
     }

@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+<html style="height: 100%">
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body style="height: 100%; margin: 0">
+    <div id="container" style="height: 100%"></div>
+    <script type="text/javascript" src="js/echarts.min.js"></script>
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+    <script type="text/javascript">
+
+        let api = window.location.hostname == 'localhost' ? './data.json' : '/api/BusinessPlan'
+        let businessMap = new BusinessMap('#container', api).init();
+    </script>
+</body>
+
+</html>
