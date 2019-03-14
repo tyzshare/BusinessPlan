@@ -50,6 +50,13 @@
             </summary>
             <param name="model">创建一个大图节点model</param>
         </member>
+        <member name="M:XBZX.Tool.Api.Controllers.BusinessPlanController.BatchCreateBusinessPlanNode(System.Collections.Generic.List{XBZX.Tool.Api.BatchCreateBusinessPlanNode})">
+            <summary>
+            批量创建业务大图节点
+            </summary>
+            <param name="model">批量创建业务大图节点model</param>
+            <returns></returns>
+        </member>
         <member name="M:XBZX.Tool.Api.Controllers.BusinessPlanController.CreateBusinessPlanRelationShip(XBZX.Tool.Api.CreateBusinessPlanRelationShipModel)">
             <summary>
             创建一个大图节点关系
@@ -187,6 +194,46 @@
             行为
             </summary>
         </member>
+        <member name="T:XBZX.Tool.Api.BatchCreateBusinessPlanNode">
+            <summary>
+            批量创建业务节点
+            </summary>
+        </member>
+        <member name="P:XBZX.Tool.Api.BatchCreateBusinessPlanNode.Name">
+            <summary>
+            业务对象名称
+            </summary>
+        </member>
+        <member name="P:XBZX.Tool.Api.BatchCreateBusinessPlanNode.Order">
+            <summary>
+            排序编号
+            </summary>
+        </member>
+        <member name="P:XBZX.Tool.Api.BatchCreateBusinessPlanNode.List">
+            <summary>
+            孩子节点
+            </summary>
+        </member>
+        <member name="T:XBZX.Tool.Api.ChildrenNode">
+            <summary>
+            孩子节点
+            </summary>
+        </member>
+        <member name="P:XBZX.Tool.Api.ChildrenNode.Name">
+            <summary>
+            节点名称
+            </summary>
+        </member>
+        <member name="P:XBZX.Tool.Api.ChildrenNode.Type">
+            <summary>
+            节点类型
+            </summary>
+        </member>
+        <member name="P:XBZX.Tool.Api.ChildrenNode.Order">
+            <summary>
+            排序编号
+            </summary>
+        </member>
         <member name="T:XBZX.Tool.Api.BrowseRecordModel">
             <summary>
             浏览记录
@@ -289,7 +336,7 @@
         </member>
         <member name="P:XBZX.Tool.Api.CreateBusinessPlanNodeModel.Name">
             <summary>
-            客户端访问IP
+            节点名称
             </summary>
         </member>
         <member name="P:XBZX.Tool.Api.CreateBusinessPlanNodeModel.RootId">

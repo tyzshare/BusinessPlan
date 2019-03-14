@@ -12,7 +12,7 @@
     <script type="text/javascript" src="index.js"></script>
     <script type="text/javascript">
 
-        let api = window.location.hostname == 'localhost' ? './data.json' : '/api/BusinessPlan'
+        let api = window.location.hostname == 'localhost' ? '/api/BusinessPlan' : '/api/BusinessPlan'
         let businessMap = new BusinessMap('#container', api).init();
     </script>
 </body>

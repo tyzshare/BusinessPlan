@@ -60,6 +60,54 @@ namespace XBZX.Tool.Api.Controllers
             await Context.SaveChangesAsync();
         }
         /// <summary>
+        /// 批量创建业务大图节点
+        /// </summary>
+        /// <param name="model">批量创建业务大图节点model</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("BatchCreateBusinessPlanNode")]
+        public bool BatchCreateBusinessPlanNode([FromBody]List<BatchCreateBusinessPlanNode> model)
+        {
+            using (var transaction = Context.Database.BeginTransaction())
+            {
+                try
+                {
+                    foreach (var item in model)
+                    {
+                        var entity = new BusinessPlanNodeEntity()
+                        {
+                            CreateAt = DateTime.Now,
+                            Name = item.Name,
+                            RootId = 0,
+                            Type = NodeTypes.Object,
+                            Order = item.Order
+                        };
+                        Context.BusinessPlanNodes.Add(entity);
+                        Context.SaveChanges();
+                        foreach (var children in item.List)
+                        {
+                            Context.BusinessPlanNodes.Add(new BusinessPlanNodeEntity()
+                            {
+                                CreateAt = DateTime.Now,
+                                Name = children.Name,
+                                Order = children.Order,
+                                RootId = entity.Id,
+                                Type = children.Type
+                            });
+                        }
+                    }
+                    Context.SaveChanges();
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    throw ex;
+                }
+                return true;
+            }
+        }
+        /// <summary>
         /// 创建一个大图节点关系
         /// </summary>
         /// <param name="model">创建一个大图节点关系model</param>

@@ -19,3 +19,4 @@ F:\GitLab\tool\XBZX.Tool.Api\obj\Release\netcoreapp2.0\XBZX.Tool.Api.AssemblyInf
 F:\GitLab\tool\XBZX.Tool.Api\obj\Release\netcoreapp2.0\XBZX.Tool.Api.AssemblyInfo.cs
 F:\GitLab\tool\XBZX.Tool.Api\obj\Release\netcoreapp2.0\XBZX.Tool.Api.dll
 F:\GitLab\tool\XBZX.Tool.Api\obj\Release\netcoreapp2.0\XBZX.Tool.Api.pdb
+F:\GitLab\tool\XBZX.Tool.Api\obj\Release\netcoreapp2.0\XBZX.Tool.Api.csprojAssemblyReference.cache

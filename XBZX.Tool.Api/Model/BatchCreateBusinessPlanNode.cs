@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 namespace XBZX.Tool.Api
 {
     /// <summary>
-    /// 创建浏览记录Model
+    /// 批量创建业务节点
     /// </summary>
-    public class CreateBusinessPlanNodeModel
+    public class BatchCreateBusinessPlanNode
     {
         /// <summary>
-        /// 节点名称
+        /// 业务对象名称
         /// </summary>
         [Required, MaxLength(255)]
         public string Name
@@ -20,9 +20,31 @@ namespace XBZX.Tool.Api
             get; set;
         }
         /// <summary>
-        /// 所属业务对象Id
+        /// 排序编号
         /// </summary>
-        public long RootId
+        public int Order
+        {
+            get; set;
+        }
+        /// <summary>
+        /// 孩子节点
+        /// </summary>
+        public List<ChildrenNode> List
+        {
+            get;set;
+        }
+
+    }
+    /// <summary>
+    /// 孩子节点
+    /// </summary>
+    public class ChildrenNode
+    {
+        /// <summary>
+        /// 节点名称
+        /// </summary>
+        [Required, MaxLength(255)]
+        public string Name
         {
             get; set;
         }
