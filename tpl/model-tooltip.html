@@ -1,0 +1,15 @@
+<div style="display: inline-block; border: 2px solid #ddd; border-radius: 6px; background-color: #fff; max-height: 80vh; overflow: auto; color: #000; opacity: .8;">
+    <div style="text-align: center; padding: 5px; font-size: 16px;">
+        <strong>${nodeName}</strong>
+    </div>
+    <div style="text-align: left; font-size: 14px; border-top: 2px solid #ddd; padding: 5px 0;">
+        <ul style="list-style: none; margin: 0; padding: 0 10px 0 25px;">
+            ${nodes.filter(x => x.type == 2).map(x => `<li><span>${x.id}.${x.name}</span></li>`).join('')}
+        </ul>
+    </div>
+    <div style="text-align: left; font-size: 14px; border-top: 2px solid #ddd; padding: 5px 0;">
+        <ul style="list-style: none; margin: 0; padding: 0 10px 0 25px;">
+            ${nodes.filter(x => x.type == 3).map(x => `<li><span>${x.id}.${x.name}</span></li>`).join('')}
+        </ul>
+    </div>
+</div>

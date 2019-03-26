@@ -8,6 +8,7 @@
 *.user
 *.userosscache
 *.sln.docstates
+web.config
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -311,4 +312,4 @@ __pycache__/
 # OpenCover UI analysis results
 
 
-# Azure Stream Analytics local run output 
+# Azure Stream Analytics local run output
