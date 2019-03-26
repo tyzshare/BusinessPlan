@@ -61,7 +61,7 @@ namespace XBZX.Tool.Api
 
             app.UseMvc();
             //跨域
-            app.UseCors("AllowSameDomain");
+            app.UseCors("AllowSameDomain"); //xiugai
 #if DEBUG
             app.UseSwagger();
             app.UseSwaggerUI(c =>

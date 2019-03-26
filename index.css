@@ -1,0 +1,100 @@
+.menuContextmenu{
+    /* width: 0; */
+    /* height: 125px; */
+    display: none;
+    overflow: hidden;
+    position: absolute;
+    padding: 5px 0;
+    background-color: #fff;
+    box-sizing: border-box;
+    border-radius: 4px;
+    box-shadow: 0 1px 6px rgba(0,0,0,.2);
+}
+.menuContextmenu.show{
+    display: inline-block;
+}
+.menuContextmenu > .item {
+    margin: 0;
+    line-height: normal;
+    padding: 7px 16px;
+    clear: both;
+    color: #515a6e;
+    font-size: 12px!important;
+    white-space: nowrap;
+    list-style: none;
+    cursor: pointer;
+    min-width: 100px;
+    transition: background .2s ease-in-out;
+}
+.menuContextmenu > .item:hover{
+    background: #f3f3f3;
+}
+
+.fullScreen {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+}
+
+.modalMask {
+    background-color: rgba(0,0,0,.15);
+    z-index: 1000;
+}
+
+.modelCenter{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.modelWarp{
+    overflow: auto;
+    z-index: 1000;
+    -webkit-overflow-scrolling: touch;
+    outline: 0;
+}
+
+.graph {
+    display: inline-block; 
+    background-color: #fff; 
+    border-radius: 4px;
+    box-shadow: 0 1px 6px rgba(0,0,0,.2);
+}
+
+.graphBox {
+    display: inline-block; 
+    margin: 10px 15px;
+    border: 2px solid #ddd; 
+    border-radius: 6px; 
+    max-height: 80vh; 
+    overflow: auto; 
+    color: #000;
+}
+
+.graphTitle {
+    text-align: center; 
+    padding: 5px; 
+    font-size: 16px;
+}
+
+.graphContent {
+    text-align: left; 
+    font-size: 14px; 
+    border-top: 2px solid #ddd; 
+    padding: 5px 0;
+}
+
+.graphUl {
+    list-style: none; 
+    margin: 0; 
+    padding: 0 10px 0 25px;
+}
