@@ -14,25 +14,20 @@
         </div>
         <div class="graphEditAttrBox" v-if="leftAttr">
             <!-- <div v-for="attr in leftAttr.attrs" target-type="attr">{{attr.name}}</div> -->
-            <div v-for="handler in leftAttr.handlers" target-type="handler">{{handler.name}}</div>
-        </div>
-    </div>
-    <div class="graphEditBox">
-        <div>
-            <label>影响属性：</label>
-            <Dropdown trigger="click" @on-click="onSelectedModelsRight">
-                <a href="javascript:void(0)">
-                    {{rightModel && rightModel.name || '模型选择'}}
-                    <Icon type="ios-arrow-down"></Icon>
-                </a>
-                <DropdownMenu slot="list">
-                    <DropdownItem v-for="model in models" :name="model.id">{{model.name}}</DropdownItem>
-                </DropdownMenu>
-            </Dropdown>
-        </div>
-        <div class="graphEditAttrBox" v-if="rightAttr">
-            <div v-for="attr in rightAttr.attrs" target-type="attr">{{attr.name}}</div>
-            <!-- <div v-for="handler in rightAttr.handlers" target-type="handler">{{handler.name}}</div> -->
+            <div v-for="handler in leftAttr.handlers" target-type="handler" :target-attr-id="handler.handler.id">
+                <p class="graphAttrLabel"><strong>{{handler.handler.name}}</strong></p>
+                <div class="graphAttrTarget">
+                    <div class="graphAttrTargetAdd">
+                        <a href="javascript:void(0)">
+                            <Icon type="md-add" />
+                            新建影响点
+                        </a>
+                    </div>
+                    <div v-for="target in handler.target">
+                        <span class="graphAttrLabel"><strong>[{{target.root.name}}]</strong> {{target.node.name}}</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -40,20 +40,19 @@ function InitJSPlumb() {
         Endpoints: [null, null],
         EndpointOverlays: [], //端点的叠加物
         //端点的默认样式
-        EndpointStyle: {fill: 'transparent', stroke: '#1565C0', radius: 4,
-            strokeWidth: 1},
-        EndpointStyles: [null, null], //连线的source和target端点的样式
-        //端点hover时的样式
-        EndpointHoverStyle: {fill: '#1565C0', stroke: '#1565C0', radius: 4,
-            strokeWidth: 1},
+        EndpointStyle: {fill: 'transparent', stroke: '#1565C0', radius: 2,
+            strokeWidth: 4},
+        // EndpointStyles: [null, null], //连线的source和target端点的样式
+        // EndpointHoverStyle: {fill: '#1565C0', stroke: '#1565C0', radius: 4,
+        //     strokeWidth: 1},
         //连线的source和target端点hover时的样式
-        EndpointHoverStyles: [null, null],
+        // EndpointHoverStyles: [null, null],
         //连线hover时的样式
-        HoverPaintStyle: {stroke: '#1565C0', strokeWidth: 3},
+        // HoverPaintStyle: {stroke: '#1565C0', strokeWidth: 3},
         LabelStyle: {color: "black"}, //标签的默认样式，用css写法。
         LogEnabled: false, //是否开启jsPlumb内部日志
         Overlays: [], //连线和端点的叠加物
-        MaxConnections: 10, //端点支持的最大连接数
+        MaxConnections: 1, //端点支持的最大连接数
         //连线样式
         PaintStyle: {stroke: '#1565C0', strokeWidth: 1, joinstyle: 'round'},
         ReattachConnections: true, //是否重新连接使用鼠标分离的线?

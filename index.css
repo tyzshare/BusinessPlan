@@ -102,23 +102,28 @@
 .graphContainer {
 
 }
-.graphContainer .graphEditBox {
-    float: left;
-    width: 300px;
-    vertical-align: top;
-}
-.graphContainer .graphEditBox:last-child {
-    float: right;
-    padding-right: 0;
+
+.graphEditAttrBox > div {
+    margin: 5px 0;
+    padding: 5px;
+    background-color: #f8f8f8;
+    border-radius: 5px;
 }
 
-.graphEditAttrBox>div{
-    padding: 0 15px;
+.graphAttrLabel {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
     cursor: auto;
     line-height: 25px;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
+
+.graphAttrTarget{
+    padding-left: 30px;
 }
 
 .clearFix:before, .clearFix:after {
