@@ -9,7 +9,7 @@
     <div id="app">
         <div id="container" style="width: 100vw; height: 100vh"></div>
         <div>
-            <Modal v-model="showGraphEditView" title="模型编辑" :mask-closable="false">
+            <Modal v-model="showGraphEditView" title="模型编辑" :mask-closable="false" @on-cancel="exitEdit()">
                 <graph-edit-view v-if="showGraphEditView"></graph-edit-view>
                 <div slot="footer"></div>
             </Modal>

@@ -401,6 +401,9 @@ var vm = new Vue({
                     this.myChart.resize();
                 })
             }
+        },
+        exitEdit() {
+            window.location.reload();
         }
     },
     created() {

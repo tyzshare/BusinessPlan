@@ -126,6 +126,14 @@
     padding-left: 30px;
 }
 
+.graphEditTargetAttr {
+    cursor: pointer;
+    transition: .3s all;
+}
+.graphEditTargetAttr:hover {
+    background-color: rgb(158, 188, 245);
+}
+
 .clearFix:before, .clearFix:after {
     content: " ";
     display: table;

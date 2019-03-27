@@ -13,7 +13,10 @@ Vue.component('GraphEditView', (res, rej) => {
                     leftModel: null,
                     rightModel: null,
                     leftAttr: null,
-                    rightAttr: null
+                    rightAttr: null,
+                    showTargetModal: false,
+                    targetEditAttr: null,
+                    hasModify: false
                 }
             },
             computed: {
@@ -53,6 +56,28 @@ Vue.component('GraphEditView', (res, rej) => {
                             }
                         })
                     }
+                },
+                targetAdd(attr) {
+                    this.targetEditAttr = attr;
+                    this.showTargetModal = true;
+                    this.rightModel = null;
+                    this.rightAttr = null;
+                },
+                setTargetAttr(attr) {
+                    if (this.targetEditAttr.target.some(x => x.node.id == attr.id)) {
+                        return this.$Message.error('此影响点已存在');
+                    }
+                    api.createBusinessPlanRelationShip({
+                        beginId: this.targetEditAttr.handler.id,
+                        endId: attr.id
+                    }).then(() => {
+                        this.hasModify = true;
+                        this.$Message.success('添加成功');
+                        this.targetEditAttr.target.push({
+                            node: attr,
+                            root: this.oriData.nodes.find(n => n.id == attr.rootId)
+                        })
+                    })
                 },
                 initJSPlumb() {
                     this.jsp = new InitJSPlumb().jsp;

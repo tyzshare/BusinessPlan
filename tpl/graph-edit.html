@@ -18,7 +18,7 @@
                 <p class="graphAttrLabel"><strong>{{handler.handler.name}}</strong></p>
                 <div class="graphAttrTarget">
                     <div class="graphAttrTargetAdd">
-                        <a href="javascript:void(0)">
+                        <a href="javascript:void(0)" @click="targetAdd(handler)">
                             <Icon type="md-add" />
                             新建影响点
                         </a>
@@ -30,4 +30,27 @@
             </div>
         </div>
     </div>
+
+    <Modal v-model="showTargetModal" title="新增影响点" :mask-closable="false">
+        <div class="graphEditBox">
+            <div>
+                <label>业务对象：</label>
+                <Dropdown trigger="click" @on-click="onSelectedModelsRight">
+                    <a href="javascript:void(0)">
+                        {{rightModel && rightModel.name || '模型选择'}}
+                        <Icon type="ios-arrow-down"></Icon>
+                    </a>
+                    <DropdownMenu slot="list">
+                        <DropdownItem v-for="model in models" :name="model.id">{{model.name}}</DropdownItem>
+                    </DropdownMenu>
+                </Dropdown>
+            </div>
+            <div class="graphEditAttrBox" v-if="rightAttr">
+                <div class="graphEditTargetAttr" v-for="attr in rightAttr.attrs" target-type="attr" @click="setTargetAttr(attr)">
+                    <span>{{attr.name}}</span>
+                </div>
+            </div>
+        </div>
+        <div slot="footer"></div>
+    </Modal>
 </div>
