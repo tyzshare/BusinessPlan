@@ -72,5 +72,31 @@
         getHtmlTemplate(tpl) {
             return netApi.get(`./tpl/${tpl}`);
         },
+        getCurrentUser() {
+            let user = localStorage.getItem('x:user');
+            return Promise.resolve(user ? Object.assign(JSON.parse(user), {
+                isAuthenticated: true
+            }) : {
+                isAuthenticated: false
+            })
+        },
+        login(user) {
+            return new Promise((res, rej) => {
+                if (user.username == 'admin' && user.password == 'hello123') {
+                    localStorage.setItem('x:user', JSON.stringify({
+                        username: user.username
+                    }))
+                    res({
+                        status: 0,
+                        message: 'success'
+                    })
+                } else {
+                    rej({
+                        status: 1,
+                        message: '用户名或密码不正确'
+                    })
+                }
+            })
+        }
     }
 })(window);

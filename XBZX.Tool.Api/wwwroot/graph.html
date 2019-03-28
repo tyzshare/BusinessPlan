@@ -13,6 +13,24 @@
                 <graph-edit-view v-if="showGraphEditView"></graph-edit-view>
                 <div slot="footer"></div>
             </Modal>
+            <Modal v-model="loginModel.showLogin" title="登录" :mask-closable="false">
+                <i-form :model="loginModel.user" inline>
+                    <form-item prop="username">
+                        <i-input type="text" v-model="loginModel.user.username" placeholder="Username">
+                            <Icon type="ios-person-outline" slot="prepend"></Icon>
+                        </i-input>
+                    </form-item>
+                    <form-item prop="password">
+                        <i-input type="password" v-model="loginModel.user.password" placeholder="Password">
+                            <Icon type="ios-lock-outline" slot="prepend"></Icon>
+                        </i-input>
+                    </form-item>
+                    <form-item>
+                        <i-button type="primary" @click="login()">Signin</Button>
+                    </form-item>
+                </i-form>
+                <div slot="footer"></div>
+            </Modal>
         </div>
     </div>
 
@@ -20,11 +38,9 @@
     <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="js/vue.min.js"></script>
     <script type="text/javascript" src="js/iview.min.js"></script>
-    <script type="text/javascript" src="js/jsplumb.min.js"></script>
     <script type="text/javascript" src="js/axios.min.js"></script>
     <script type="text/javascript" src="app/api.js"></script>
     <script type="text/javascript" src="app/config.js"></script>
-    <script type="text/javascript" src="app/initJSPlumb.js"></script>
     <script type="text/javascript" src="app/graphEditView.js"></script>
     <script type="text/javascript" src="app/businessMap.js"></script>
     <link type="text/css" rel="stylesheet" href="js/iview.css"/>

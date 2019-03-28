@@ -81,6 +81,7 @@ Vue.component('GraphEditView', (res, rej) => {
                             node: attr,
                             root: this.oriData.nodes.find(n => n.id == attr.rootId)
                         })
+                        this.showTargetModal = false
                     })
                 },
                 initJSPlumb() {
