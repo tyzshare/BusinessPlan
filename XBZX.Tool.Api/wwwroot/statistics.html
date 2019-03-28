@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>访问量</title>
-    <script src="echarts.min.js"></script>
+    <script src="./js/echarts.min.js"></script>
 </head>
 
 <body>
@@ -149,7 +149,7 @@
         function state_Change() {
             if (xmlhttp.readyState == 4) {// 4 = "loaded"
                 if (xmlhttp.status == 200) {// 200 = OK
-                    
+
                     // ...our code here...
                     var res = JSON.parse(xmlhttp.responseText);
                     setChart(res);
