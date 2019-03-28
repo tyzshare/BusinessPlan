@@ -23,6 +23,5 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="wwwroot\htmlpage.html" />
-    <None Include="wwwroot\jquery.min.js" />
   </ItemGroup>
 </Project>
