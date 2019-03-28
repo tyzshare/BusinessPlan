@@ -16,7 +16,11 @@ Vue.component('GraphEditView', (res, rej) => {
                     rightAttr: null,
                     showTargetModal: false,
                     targetEditAttr: null,
-                    hasModify: false
+                    hasModify: false,
+                    quickEdit: {
+                        attrVal: '',
+                        handlerVal: ''
+                    }
                 }
             },
             computed: {
@@ -110,13 +114,61 @@ Vue.component('GraphEditView', (res, rej) => {
                         })
                     })
 
+                },
+                submitAttr() {
+                    if (!this.quickEdit.attrVal) {
+                        return this.$Message.error('请填写信息')
+                    }
+                    if (this.leftAttr.attrs.some(x => x.name == this.quickEdit.attrVal)) {
+                        return this.$Message.error('数据已存在')
+                    }
+                    return api.createBusinessPlanNode({
+                        name: this.quickEdit.attrVal,
+                        rootId: this.leftModel.id,
+                        type: 2,
+                        order: 0
+                    }).then(() => {
+                        this.$Message.success('保存成功');
+                        this.quickEdit.attrVal = ''
+                        this.initData().then(() => {
+                            this.onSelectedModelsLeft(this.leftModel.id)
+                        })
+                    }).catch(err => {
+                        this.$Message.error(err.message)
+                    })
+                },
+                submitHandler() {
+                    if (!this.quickEdit.handlerVal) {
+                        return this.$Message.error('请填写信息')
+                    }
+                    if (this.leftAttr.handlers.some(x => x.handler.name == this.quickEdit.handlerVal)) {
+                        return this.$Message.error('数据已存在')
+                    }
+                    return window.api.createBusinessPlanNode({
+                        name: this.quickEdit.handlerVal,
+                        rootId: this.leftModel.id,
+                        type: 3,
+                        order: 0
+                    }).then(() => {
+                        this.$Message.success('保存成功')
+                        this.quickEdit.handlerVal = ''
+                        this.initData().then(() => {
+                            this.onSelectedModelsLeft(this.leftModel.id)
+                        })
+
+                    }).catch(err => {
+                        this.$Message.error(err.message)
+                    })
+                },
+                initData() {
+                    return api.getBusinessPlan().then(data => {
+                        this.oriData = data;
+                    })
                 }
             },
             created() {
                 // this.initJSPlumb()
-                api.getBusinessPlan().then(data => {
-                    this.oriData = data;
-                })
+                this.initData()
             }
         })
     })
