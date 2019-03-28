@@ -129,6 +129,7 @@
 .graphEditTargetAttr {
     cursor: pointer;
     transition: .3s all;
+    margin: 5px 0;
 }
 .graphEditTargetAttr:hover {
     background-color: rgb(158, 188, 245);
