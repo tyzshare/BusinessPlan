@@ -89,7 +89,15 @@ var vm = new Vue({
         models: null, //
         links: null,
         drawNodes: null,
-        showGraphEditView: false
+        showGraphEditView: false,
+        currentUser: null,
+        loginModel: {
+            showLogin: false,
+            user: {
+                username: '',
+                password: ''
+            }
+        }
     },
     computed: {
 
@@ -241,12 +249,18 @@ var vm = new Vue({
                     })
 
                     let menuHandler = {
-                        editGraph: ()=> {
+                        editGraph: () => {
+                            if (!this.validityLogin()) {
+                                return;
+                            }
                             // let graph = new GraphEditView(tpls.graphEdit);
                             // graph.render();
                             this.showGraphEditView = true;
                         },
                         addAttr: () => {
+                            if (!this.validityLogin()) {
+                                return;
+                            }
                             let name = '';
                             this.$Modal.confirm({
                                 title: `请输入[${originalData.name}]属性名称`,
@@ -282,6 +296,9 @@ var vm = new Vue({
                             })
                         },
                         addHandler: () => {
+                            if (!this.validityLogin()) {
+                                return;
+                            }
                             let name = '';
                             this.$Modal.confirm({
                                 title: `请输入[${originalData.name}]事件名称`,
@@ -317,6 +334,9 @@ var vm = new Vue({
                             })
                         },
                         addModel: () => {
+                            if (!this.validityLogin()) {
+                                return;
+                            }
                             let name = '';
                             this.$Modal.confirm({
                                 title: `请输入模型名称`,
@@ -360,7 +380,7 @@ var vm = new Vue({
                     return (e, type, _originalData) => {
                         e.cancelBubble = true;
                         e.preventDefault();
-                        if (![99, 1].some(x => x == type)) {
+                        if (![99].some(x => x == type)) { // 99,1,2,3 控制哪些类型会响应右键
                             menu.removeClass('show');
                             return;
                         }
@@ -401,10 +421,39 @@ var vm = new Vue({
                     this.myChart.resize();
                 })
             }
+        },
+        exitEdit() {
+            window.location.reload();
+        },
+        validityLogin() {
+            if (!this.currentUser || !this.currentUser.isAuthenticated) {
+                this.loginModel.user = {
+                    username: '',
+                    password: ''
+                }
+                this.loginModel.showLogin = true
+                return false;
+            }
+            return this.currentUser
+        },
+        login() {
+            window.api.login(this.loginModel.user).then(() => {
+                this.$Message.success('登录成功')
+                this.loginModel.showLogin = false
+                this.getCurrentUser()
+            }).catch(err => {
+                this.$Message.error(err.message);
+            })
+        },
+        getCurrentUser() {
+            window.api.getCurrentUser().then((data) => {
+                this.currentUser = data
+            })
         }
     },
     created() {
-        this.queryData();
+        this.queryData()
+        this.getCurrentUser()
     },
 });
 

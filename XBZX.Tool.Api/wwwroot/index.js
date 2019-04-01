@@ -1,4 +1,21 @@
+// 需要用框架重写...
+
+// https://github.com/wangduanduan/jsplumb-chinese-tutorial
+
 (() => {
+
+    let tpls = null;
+    let tplsGetter = ((tplMaps, rootPath) => {
+        return Promise.all(Object.keys(tplMaps).map(x => $.get(rootPath + tplMaps[x]).then(data => {
+            tplMaps[x] = data;
+        }))).then(() => {
+            tpls = tplMaps;
+        });
+    })({
+        modelToolTipTpl: 'model-tooltip.html',
+        contextmenu: 'contextmenu.html',
+        graphEdit: 'graph-edit.html',
+    }, './tpl/')
 
     // 节点配置信息
     var typeSettings = {
@@ -68,6 +85,29 @@
                 </div>`;
     }
 
+    function GraphEditView(tpl) {
+        this.el = $(tpl).hide().appendTo(document.body);
+        this.el.find('.js-content').on('click', (e) => {
+            e.stopPropagation();
+        });
+        this.el.on('click', (e) => {
+            this.close();
+        })
+    }
+    GraphEditView.prototype.destroy = function () {
+        this.el.remove();
+        this.destroyed = true;
+    }
+    GraphEditView.prototype.close = function () {
+        this.destroy();
+    }
+    GraphEditView.prototype.render = function (model) {
+
+
+        this.el.show();
+    }
+
+
 
     function BusinessMap(container, apiUrl) {
         if (!container || !apiUrl) {
@@ -77,16 +117,20 @@
         this.api = apiUrl;
     }
 
-    BusinessMap.prototype.init = function () {
-        $.ajax({
-            url: this.api,
-            type: "get",
-            dataType: "json",
-            success: (data) => {
-                this.$data = data;
-                this.render();
-            }
-        });
+    BusinessMap.prototype.init = function (cb) {
+        Promise.all([
+            $.ajax({
+                url: this.api,
+                type: "get",
+                dataType: "json",
+                success: (data) => {
+                    this.$data = data;
+                }
+            }),
+            tplsGetter
+        ]).then(() => {
+            this.render();
+        })
         return this;
     }
 
@@ -154,7 +198,7 @@
             animationEasingUpdate: 'quinticInOut',
             symbolRotate: 45,
             series: [{
-                name: '模块',
+                name: 'model',
                 type: 'graph',
                 layout: 'force',
                 data: nodes,
@@ -164,10 +208,10 @@
                 focusNodeAdjacency: true,
                 draggable: false,
                 force: {
-                    initLayout: 'circular',
-                    repulsion: 500,
-                    gravity: .01,
-                    edgeLength: [50, 100]
+                    // initLayout: 'circular',
+                    repulsion: 340,
+                    gravity: 0.1,
+                    // edgeLength: [50, 200]
                 },
                 itemStyle: {
                     normal: {
@@ -215,6 +259,63 @@
 
         var myChart = echarts.init(this.el);
         myChart.setOption(option);
+        $(window).on('resize', () => {
+            myChart.resize();
+        })
+
+        let callContextmenu = (() => {
+            let menu = $(tpls.contextmenu).appendTo(document.body);
+            $(window).on('click', (e) => {
+                // if (!menu[0].contains(e.target)) {
+                    menu.removeClass('show');
+                // }
+            })
+
+            let menuHandler = {
+                editGraph() {
+                    let graph = new GraphEditView(tpls.graphEdit);
+                    graph.render();
+                }
+            }
+
+            menu.find('[xb-click]').each((index, x) => {
+                x.attributes['xb-click'] && $(x).on('click', menuHandler[x.attributes['xb-click'].nodeValue]);
+            })
+
+            return (e, type) => {
+                menu.css({
+                    left: `${e.clientX}px`,
+                    top: `${e.clientY}px`
+                }).addClass('show');
+                menu.children(`[itemtype="${type}"]`).show();
+                menu.children(`[itemtype!="${type}"]`).hide();
+
+                e.cancelBubble = true;
+                e.preventDefault();
+            }
+        })()
+
+        $(this.el).on('contextmenu', (e) => {
+            callContextmenu(e, 99)
+            e.preventDefault();
+        })
+
+        myChart.on('click', (params) => {
+            let originalData = params.data._data;
+
+            if (params.nodeType == 'node') {
+
+            } else if (params.nodeType == 'edge') {
+
+            }
+        });
+
+        myChart.on('contextmenu', function (params) {
+            let originalEvent = params.event.event;
+            let originalData = params.data._data;
+
+            callContextmenu(params.event.event, params.dataType == 'edge' ? 0 : originalData.type)
+        });
 
     }
 
