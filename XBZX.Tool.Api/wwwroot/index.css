@@ -63,38 +63,82 @@
     outline: 0;
 }
 
-.graph {
-    display: inline-block; 
-    background-color: #fff; 
+/* .graph {
+    display: inline-block;
+    background-color: #fff;
     border-radius: 4px;
     box-shadow: 0 1px 6px rgba(0,0,0,.2);
 }
 
 .graphBox {
-    display: inline-block; 
+    display: inline-block;
     margin: 10px 15px;
-    border: 2px solid #ddd; 
-    border-radius: 6px; 
-    max-height: 80vh; 
-    overflow: auto; 
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    max-height: 80vh;
+    overflow: auto;
     color: #000;
 }
 
 .graphTitle {
-    text-align: center; 
-    padding: 5px; 
+    text-align: center;
+    padding: 5px;
     font-size: 16px;
 }
 
 .graphContent {
-    text-align: left; 
-    font-size: 14px; 
-    border-top: 2px solid #ddd; 
+    text-align: left;
+    font-size: 14px;
+    border-top: 2px solid #ddd;
     padding: 5px 0;
 }
 
 .graphUl {
-    list-style: none; 
-    margin: 0; 
+    list-style: none;
+    margin: 0;
     padding: 0 10px 0 25px;
+} */
+
+.graphContainer {
+
+}
+
+.graphEditHandler, .graphEditAttr {
+    margin: 5px 0;
+    padding: 5px;
+    background-color: #f8f8f8;
+    border-radius: 5px;
+}
+
+.graphAttrLabel {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: auto;
+    line-height: 25px;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
+
+.graphAttrTarget{
+    padding-left: 30px;
+}
+
+.graphEditTargetAttr {
+    cursor: pointer;
+    transition: .3s all;
+    margin: 5px 0;
+}
+.graphEditTargetAttr:hover {
+    background-color: rgb(158, 188, 245);
+}
+
+.clearFix:before, .clearFix:after {
+    content: " ";
+    display: table;
+}
+.clearFix:after {
+    clear: both;
 }
