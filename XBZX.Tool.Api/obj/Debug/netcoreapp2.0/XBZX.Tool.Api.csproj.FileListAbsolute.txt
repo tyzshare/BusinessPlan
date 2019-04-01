@@ -21,3 +21,14 @@ F:\TYZ\tool\XBZX.Tool.Api\obj\Debug\netcoreapp2.0\XBZX.Tool.Api.AssemblyInfoInpu
 F:\TYZ\tool\XBZX.Tool.Api\obj\Debug\netcoreapp2.0\XBZX.Tool.Api.AssemblyInfo.cs
 F:\TYZ\tool\XBZX.Tool.Api\obj\Debug\netcoreapp2.0\XBZX.Tool.Api.dll
 F:\TYZ\tool\XBZX.Tool.Api\obj\Debug\netcoreapp2.0\XBZX.Tool.Api.pdb
+F:\GitLab\tool\XBZX.Tool.Api\bin\Debug\netcoreapp2.0\XBZX.Tool.Api.xml
+F:\GitLab\tool\XBZX.Tool.Api\bin\Debug\netcoreapp2.0\XBZX.Tool.Api.deps.json
+F:\GitLab\tool\XBZX.Tool.Api\bin\Debug\netcoreapp2.0\XBZX.Tool.Api.runtimeconfig.json
+F:\GitLab\tool\XBZX.Tool.Api\bin\Debug\netcoreapp2.0\XBZX.Tool.Api.runtimeconfig.dev.json
+F:\GitLab\tool\XBZX.Tool.Api\bin\Debug\netcoreapp2.0\XBZX.Tool.Api.dll
+F:\GitLab\tool\XBZX.Tool.Api\bin\Debug\netcoreapp2.0\XBZX.Tool.Api.pdb
+F:\GitLab\tool\XBZX.Tool.Api\obj\Debug\netcoreapp2.0\XBZX.Tool.Api.csproj.CoreCompileInputs.cache
+F:\GitLab\tool\XBZX.Tool.Api\obj\Debug\netcoreapp2.0\XBZX.Tool.Api.AssemblyInfoInputs.cache
+F:\GitLab\tool\XBZX.Tool.Api\obj\Debug\netcoreapp2.0\XBZX.Tool.Api.AssemblyInfo.cs
+F:\GitLab\tool\XBZX.Tool.Api\obj\Debug\netcoreapp2.0\XBZX.Tool.Api.dll
+F:\GitLab\tool\XBZX.Tool.Api\obj\Debug\netcoreapp2.0\XBZX.Tool.Api.pdb
